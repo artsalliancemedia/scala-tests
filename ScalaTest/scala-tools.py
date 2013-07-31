@@ -19,7 +19,7 @@ def main():
     authstr = config[u"authstring"]
             
     # Create a Content Manager object, then use
-    content_manager = scws.ConManager(baseurl, authstr, api_vers='v1.2')
+    content_manager = scws.ConManager(baseurl, authstr, api_vers=u'v1.2')
     players = content_manager.PlayerRS.list()
     for player in players:
         print u'Player:', player.name
@@ -51,11 +51,11 @@ def main():
     playlists_to_delete = content_manager.PlaylistRS.list(searchCriteria=playlist_filter)
     for playlist_to_delete in playlists_to_delete:
         content_manager.PlaylistRS.delete(playlistId=playlist_to_delete.id)
-        print 'Deleted old playlist ID:', playlist_to_delete.id
+        print u'Deleted old playlist ID:', playlist_to_delete.id
 
     #upload media
     file_id = content_manager.upload_file(u'test_image.png', u'CADIENLOBBY')
-    print 'File ID:', file_id
+    print u'File ID:', file_id
      
     #create playlist
     new_pl = scws.TObj()
