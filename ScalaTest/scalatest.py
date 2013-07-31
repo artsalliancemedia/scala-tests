@@ -6,16 +6,17 @@ Created on 26 Jul 2013
 
 import webservices.scws as scws
 
-if __name__ == '__main__':
+def main():
     baseurl = 'http://aam-scalaplayer-test:8080/ContentManager/'
     authstr = 'CMWeb:liggunna'
+        
     # Create a Content Manager object, then use
-    cm = scws.ConManager(baseurl, authstr, api_vers='v1.2')
-    players = cm.PlayerRS.list()
+    content_manager = scws.ConManager(baseurl, authstr, api_vers='v1.2')
+    players = content_manager.PlayerRS.list()
     for player in players:
         print 'Player:', player.name
     
-#     playlists = cm.PlaylistRS.list()
+#     playlists = content_manager.PlaylistRS.list()
 #     if playlists:
 #         print 'Playlist list ...'
 #         for playlist in playlists:
@@ -23,66 +24,94 @@ if __name__ == '__main__':
 #     else:
 #         print 'No playlists found.'
 #     print
-#     
-#     messages = cm.MessageRS.list()
+#      
+#     messages = content_manager.MessageRS.list()
 #     if messages:
 #         print 'Message list ...'
 #         for message in messages:
 #             print '  *', message.name
 #     print
 
+    #delete playlist from previous run
+    playlist_filter = scws.TObj()
+    playlist_filter.column       = 'name'
+    playlist_filter.restriction  = 'EQUALS'
+    playlist_filter.value        = 'Tobias Playlist'
+    
+    playlists_to_delete = content_manager.PlaylistRS.list(searchCriteria=playlist_filter)
+    for playlist_to_delete in playlists_to_delete:
+        content_manager.PlaylistRS.delete(playlistId=playlist_to_delete.id)
+        print 'Deleted old playlist ID:', playlist_to_delete.id
+
     #upload media
-    fileID = cm.upload_file('image.png', 'CADIENLOBBY')
-    print 'File ID:', fileID
+    file_id = content_manager.upload_file('image.png', 'CADIENLOBBY')
+    print 'File ID:', file_id
      
     #create playlist
-    newpl = scws.TObj()
-    newpl.name = 'Tobias Playlist'
-    newpl.description = 'Test Scala API'
-    uploaded_pl = cm.PlaylistRS.create(playlistTO=newpl)
+    new_pl = scws.TObj()
+    new_pl.name = 'Tobias Playlist'
+    new_pl.description = 'Test Scala API'
+    uploaded_pl = content_manager.PlaylistRS.create(playlistTO=new_pl)
     print 'Playlist ID:', uploaded_pl[0].id
      
     #fill playlist
-    plitem = scws.TObj()
-    plitem.mediaId = fileID
-    plitem.duration = 10
+    pl_item = scws.TObj()
+    pl_item.mediaId = file_id
+    pl_item.duration = 10
      
-    uploaded_plitem = cm.PlaylistRS.addPlaylistItem(playlistId=uploaded_pl[0].id, playlistItem=plitem)
-    print 'PlaylistItem ID:', uploaded_plitem[0].id
+    uploaded_pl_item = content_manager.PlaylistRS.addPlaylistItem(playlistId=uploaded_pl[0].id, playlistItem=pl_item)
+    print 'PlaylistItem ID:', uploaded_pl_item[0].id
     
     #create schedule
-    ourchannelcriteria = scws.TObj(column='name', restriction='EQUALS', value='3x1 1600x900')
-    ourchannel = cm.ChannelRS.list(searchCriteria = ourchannelcriteria)
-    print 'Channel ID:', ourchannel[0].id
+    our_channel_criteria = scws.TObj(column='name', restriction='EQUALS', value='3x1 1600x900')
+    our_channel = content_manager.ChannelRS.list(searchCriteria = our_channel_criteria)
+    print 'Channel ID:', our_channel[0].id
+    print 'Channel Name:', our_channel[0].name
     
-    frames = cm.ChannelRS.getFrames(channelId=ourchannel[0].id)
+    frames = content_manager.ChannelRS.getFrames(channelId=our_channel[0].id)
     print 'Frame ID:', frames[0].id
     print 'Frame name:', frames[0].name
     
-    timeslot = scws.TObj()
-    timeslot.channelId = ourchannel[0].id
-    timeslot.frameId = frames[0].id
-    timeslot.playlistId = uploaded_pl[0].id
-    timeslot.startDate = '20130730'
-    timeslot.endDate = '20130830'
-    timeslot.startTime = '00:00:00'
-    timeslot.endTime = '23:59:59'
-    timeslot.playFullScreen = False
-    timeslot.recurrencePattern = 'WEEKLY'
-    timeslot.weekdays = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY']
-    timeslot.color = '#ccccff'
-    timeslot.locked = False
+    timeslots = content_manager.ChannelRS.getTimeslots( {'channelId':our_channel[0].id}, frameId=frames[0].id)
+    for timeslot in timeslots:
+        content_manager.ChannelRS.deleteTimeslot(timeslotId=timeslot.id)
+        print 'Deleted old new_timeslot ID:', timeslot.id
+        
+    #raise SystemExit
     
-    uploaded_timeslot = cm.ChannelRS.createTimeslot(timeslotParam=timeslot)
+    new_timeslot = scws.TObj()
+    new_timeslot.channelId = our_channel[0].id
+    new_timeslot.frameId = frames[0].id
+    new_timeslot.playlistId = uploaded_pl[0].id
+    new_timeslot.startDate = '2013-07-30'
+    new_timeslot.endDate = '2013-08-30'
+    new_timeslot.startTime = '00:00:00'
+    new_timeslot.endTime = '23:59:59'
+    new_timeslot.playFullScreen = False
+    new_timeslot.recurrencePattern = 'WEEKLY'
+    new_timeslot.weekdays = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY','SUNDAY']
+    new_timeslot.color = '#FF0000'
+    new_timeslot.locked = False
+    
+    uploaded_timeslot = content_manager.ChannelRS.createTimeslot(timeslotParam=new_timeslot)
     print 'Schedule ID:', uploaded_timeslot[0].id
+    print 'Schedule Name:', uploaded_timeslot[0].name
     
-    displays = cm.PlayerRS.getPlayerDisplays(playerId=players[0].id)
+    displays = content_manager.PlayerRS.getPlayerDisplays(playerId=players[0].id)
     print 'Display ID:', displays[0].id
+    print 'Display Name:', displays[0].name
     
-    displayupdate = scws.TObj()
-    displayupdate.id = displays[0].id
-    displayupdate.screenCounter = 1
-    displayupdate.description = 'Tobias is updating a screen'
-    displayupdate.channelId = ourchannel[0].id
+    updated_display = scws.TObj()
+    updated_display.id = displays[0].id
+    updated_display.screenCounter = 1
+    updated_display.description = 'Tobias is updating a screen'
+    updated_display.channelId = our_channel[0].id
     
-    uploaded_playerdisplay = cm.PlayerRS.updatePlayerDisplay(playerDisplay=displayupdate)
+    content_manager.PlayerRS.updatePlayerDisplay(playerDisplay=updated_display)
+    
+    distribution_server_tasks = content_manager.PlanGeneratorRS.generatePlans(playerIds=[players[0].id])
+    for server in distribution_server_tasks:
+        print content_manager.PlanGeneratorRS.getPlanStatus(uuid=server.uuid)
+        
+if __name__ == '__main__':
+    main()
