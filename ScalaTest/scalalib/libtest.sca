@@ -1,0 +1,882 @@
+﻿!ScalaScript500
+// Saved by Scala Designer 5 Release 5.1.20 at 2011-04-05 19:48:15
+:"libtest.sca"
+{
+  Group:
+    Boolean(b, vol_mute, inst_content, power_switch, screen_save);
+    Integer(i, iarray[10], vol_val, sleep_duration, t, port);
+    String(s, sarray[10], pyversion, scalapath, realpath, scriptdir, modulename, results, file_to_install, log_text, vol_comp, url, debug_var, grab_debug, filename, roottag, rss_title, rss_lang, rss_item_titles[10], keypath, xml_title, xml_item_title[30], xml_language, csv_start_date[10], csv_start_time[10], csv_end_time[10], csv_event_name[10], csv_group_name[10], csv_location_name[10], sql_query, sql_item[10], mdval, md_name, sql_constr, unpack_debug, foo);
+    Real(f, sql_cost[10], sql_price[10]);
+    String(filepath, ini_section, scalalib_ver);
+    BackgroundSettings(Size(800, 600));
+  Sequence:
+    :"Title Page"
+    {
+      Sequence:
+        WindowsScript("test_scripts\libtest - pyversion.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(pyversion), ShareVariable(scalalib_ver));
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Scalalib test suite", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(50, 410, "python version:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 180, "Product:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(150, 180, " !Scala.ProductInfo", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(50, 220, "Release:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(150, 220, " !Scala.ReleaseInfo", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(50, 260, "Version:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(150, 260, " !Scala.Version", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(80, 460, "!pyversion", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(720)));
+            Text(50, 300, "Scalalib Version:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(11)), Font("Consolas (Western [])", 30), Wrap(On, Width(740)));
+            Text(270, 300, "!scalalib_ver", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(740)));
+            HardDuration(3000);
+        }
+        t = 1;
+    }
+    :"test - var assignment"
+    {
+      Sequence:
+        i = 1;
+        b = Off;
+        f = 1.23;
+        s = "hello";
+        WindowsScript("test_scripts\libtest - var assign.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(i), ShareVariable(b), ShareVariable(f), ShareVariable(s), ShareVariable(iarray), ShareVariable(sarray));
+        :"display"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 210, "i", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(80, 210, " ", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)), Append("=", Face(On, Pen(7)), Under(Off, Thickness(3), Pen(7))), Append(" !i"));
+            Text(280, 210, "b", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(310, 210, " ", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)), Append("=", Face(On, Pen(7)), Under(Off, Thickness(3), Pen(7))), Append(" !b"));
+            Text(525, 210, "f", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(545, 210, " ", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)), Append("=", Face(On, Pen(7)), Under(Off, Thickness(3), Pen(7))), Append(" !f"));
+            Text(50, 280, "s", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Courier New (Western [])", 30), Wrap(On, Width(770)));
+            Text(70, 280, " ", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(770)), Append("=", Face(On, Pen(7)), Under(Off, Thickness(3), Pen(7))), Append(" !s"));
+            Text(50, 370, "iarray", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(170, 370, " = ", Face(On, Pen(7)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(7)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 30, " variable assignment", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(50, 420, "  !(iarray[0])", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(50, 470, "  !(iarray[1])", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(50, 530, "  !(iarray[2])", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(465, 370, "sarray", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(590, 370, " = ", Face(On, Pen(7)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(7)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(465, 420, "  !(sarray[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(465, 470, "  !(sarray[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(465, 530, "  !(sarray[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - Log"
+    {
+      Sequence:
+        log_text = "Is this log function working?";
+        WindowsScript("test_scripts\libtest - std log.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(log_text));
+        :"test 2.5"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(285, 540, "Close browser to continue", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), OnReplay(Replace), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(480)));
+            Button(Normal(Text(610, 470, ">>>", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(180)))), Select(Text(610, 470, ">>>", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Shift(2, 2), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(180))), Goto("_TempName1")), MatchSize(On));
+            Text(55, 150, "!log_text", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717)));
+            Button(Normal(Text(350, 480, "IC.log", Face(On, Pen(15)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(15)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717)))), Select(Text(350, 480, "IC.log", Face(On, Pen(15)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Shift(1, 1), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(15)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717))), GotoURL("file:///C:/Documents%20and%20Settings/All%20Users/Application%20Data/Scala/InfoChannel%20Designer%205/Logs/IC.log")), MatchSize(On));
+            Text(220, 33, "std _log()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        :"_TempName1"
+        t = t + 1;
+    }
+    :"test - Logging system"
+    {
+      Sequence:
+        log_text = "Is this log function working with the new system?";
+        WindowsScript("test_scripts\libtest - logging system.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(log_text), ShareVariable(grab_debug));
+        :"test 2.22"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Button(Normal(Text(610, 470, ">>>", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(180)))), Select(Text(610, 470, ">>>", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Shift(2, 2), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(180))), Goto("_TempName2")), MatchSize(On));
+            Text(55, 150, "!log_text", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717)));
+            Button(Normal(Text(350, 480, "IC.log", Face(On, Pen(15)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(15)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717)))), Select(Text(350, 480, "IC.log", Face(On, Pen(15)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Shift(1, 1), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(15)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(717))), GotoURL("file:///C:/Documents%20and%20Settings/All%20Users/Application%20Data/Scala/InfoChannel%20Designer%205/Logs/IC.log")), MatchSize(On));
+            Text(60, 240, "Scala var logging destination:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(727)));
+            Text(151, 288, "!grab_debug", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(624)));
+            Text(190, 30, "  logging system", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        :"_TempName2"
+        t = t + 1;
+    }
+    :"test - install content"
+    {
+      Sequence:
+        file_to_install = "c:\scalalib.html";
+        results = "nada";
+        WindowsScript("test_scripts\libtest - install cont.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(pyversion), ShareVariable(results), ShareVariable(file_to_install));
+        :"test 2"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(190, 30, " install_content()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(60, 260, "file_to_install:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(60, 170, "The path below must be valid or it will break several^ntests.  (The pydoc.bat file with create it.)", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(50, 450, "note results on next page", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 260, "!file_to_install", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - get scala path"
+    {
+      Sequence:
+        scalapath = "Content:\scalalib.html";
+        realpath = "nada";
+        scriptdir = "nada";
+        WindowsScript("test_scripts\libtest - paths check.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(scalapath), ShareVariable(realpath), ShareVariable(scriptdir));
+        :"display.2"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "Scalapath:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(60, 300, "Realpath:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 220, "!scalapath", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(210, 300, "!realpath", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(60, 450, "scriptdir:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 450, "!scriptdir", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(569)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 30, " .get_path(), .get_script_dir()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - lock content"
+    {
+      Sequence:
+        file_to_install = "Content:\scalalib.html";
+        results = "nada";
+        WindowsScript("test_scripts\libtest - lock content.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(file_to_install));
+        :"test 2.3"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "file_to_lock:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 220, "!file_to_install", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(290, 310, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(60, 310, "result of _locks:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 30, " lock_content()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - unlock content"
+    Disabled
+    {
+      Sequence:
+        file_to_install = "Content:\scalalib.html";
+        results = "nada";
+        WindowsScript("test_scripts\libtest - unlock content.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(file_to_install));
+        :"test 2.23"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "file_to_lock:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 220, "!file_to_install", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(60, 310, "result of _locks:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 310, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(220, 30, "un", Face(On, Pen(7)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(7)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)), Append("lock_content()", Face(On, Pen(2)), Under(Off, Thickness(3), Pen(7))));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - set var multicast listener"
+    {
+      Sequence:
+        foo = "nada";
+        port = 21001;
+        WindowsScript("test_scripts\libtest - set vartest.py", Engine("Python.AXScript.2"), ShareVariable(foo), ShareVariable(port));
+        {
+        }
+        :"test 2.34"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(60, 540, "!port", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(720)));
+            Text(55, 83, "Hello there:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(770)));
+            Text(55, 185, "!foo", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 200), Wrap(On, Width(770)));
+            Text(270, 30, "multicast set:", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - check plan now"
+    {
+      Sequence:
+        results = "nada";
+        :"test 2.38"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(330, 288, "Check for network traffic after clicking next.", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(460)));
+            Text(200, 30, " check_plan()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - check plan.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results));
+        :"test 2.2"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(367, 498, "Done.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(423)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(200, 30, " check_plan()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - import module"
+    {
+      Sequence:
+        modulename = "testmod";
+        results = "nada";
+        WindowsScript("test_scripts\libtest - import mod.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(modulename), ShareVariable(results));
+        :"test 2.37"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "modulename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(60, 260, "results:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 220, "!modulename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(493)));
+            Text(290, 260, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(200, 30, " import_mod()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - Volume control"
+    {
+      Sequence:
+        vol_comp = "main";
+        vol_mute = On;
+        vol_val = 70;
+        :"test 2.9"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "component:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 230, "!vol_comp", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 180, "value:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 180, "!vol_val", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 280, "mute:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 360, "click to set the volume above", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 280, "!vol_mute", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(400, 180, "Will be ignored", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(400, 280, "Connected", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 30, "Test !(t)a:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "set_volume()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - setvol.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(vol_comp), ShareVariable(vol_mute));
+        vol_mute = Off;
+        vol_val = 30;
+        :"test 2.7"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "component:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 230, "!vol_comp", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 180, "value:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 180, "!vol_val", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 280, "mute:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 360, "click to set the volume above", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 280, "!vol_mute", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(400, 280, "Connected", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(395, 180, "Ignored", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 30, "Test !(t)b:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "set_volume()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - setvol.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(vol_comp), ShareVariable(vol_val), ShareVariable(vol_mute));
+        vol_val = 75;
+        :"test 2.11"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "component:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 230, "!vol_comp", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 180, "value:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 180, "!vol_val", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 280, "mute:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 360, "click to set the volume above", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 280, "!vol_mute", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(400, 280, "None - not connected", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 30, "Test !(t)c:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "set_volume()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - setvol.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(vol_comp), ShareVariable(vol_val));
+        vol_mute = Off;
+        vol_val = 20;
+        :"test 2.10"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "component:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 230, "!vol_comp", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 180, "value:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 180, "!vol_val", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 280, "mute:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 360, "click to set the volume above", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(240, 280, "!vol_mute", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(400, 280, "None - not connected", Face(On, Pen(4)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(4)), Font("Consolas (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 30, "Test !(t)d:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "set_volume()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - setvol.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(vol_comp), ShareVariable(vol_val));
+        t = t + 1;
+    }
+    :"test - get reg value"
+    {
+      Sequence:
+        keypath = "HKCU\Software\Scala\InfoChannel Designer 5\LogFolderPath";
+        WindowsScript("test_scripts\libtest - get reg val.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(keypath), ShareVariable(results));
+        :"display.3"
+        {
+          Group:
+            keypath = "HKCU\Software\Scala\InfoChannel Designer 5\LogFolderPath";
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "keypath:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(60, 380, "result:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 220, "!keypath", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(210, 380, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(220, 30, " .get_regval(keypath)", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - read metadata (deprecated)"
+    {
+      Sequence:
+        mdval = "Not found";
+        md_name = "Player.Location";
+        :"test 2.30"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to grab", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "md_name:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!md_name", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "get_metaval() old", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - read metadata.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(mdval), ShareVariable(md_name));
+        :"test 2.31"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "done.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "md_name:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!md_name", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 220, "mdval:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 220, "!mdval", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "get_metaval() old", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - read metadata (new)"
+    {
+      Sequence:
+        mdval = "Not found";
+        md_name = "Player.Location";
+        :"test 2.35"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to grab", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "md_name:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!md_name", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "get_metaval() new", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - read metadata2.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(mdval), ShareVariable(md_name));
+        :"test 2.36"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "done.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "md_name:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!md_name", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 220, "mdval:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 220, "!mdval", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "get_metaval() new", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - get info"
+    {
+      Sequence:
+        WindowsScript("test_scripts\libtest - get info.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results));
+        :"display.4"
+        {
+          Group:
+            keypath = "HKCU\Software\Scala\InfoChannel Designer 5\LogFolderPath";
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 180, "result:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 180, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(220, 30, " .get_info()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - get ini"
+    {
+      Sequence:
+        filepath = "C:\WINDOWS\system.ini";
+        ini_section = "drivers";
+        WindowsScript("test_scripts\libtest - get ini.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results), ShareVariable(filepath), ShareVariable(ini_section));
+        :"display.5"
+        {
+          Group:
+            keypath = "HKCU\Software\Scala\InfoChannel Designer 5\LogFolderPath";
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 220, "filepath:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(60, 380, "result:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 220, "!filepath", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(60, 260, "section:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(210, 260, "!ini_section", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(210, 380, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(570)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(220, 30, " .get_ini(filepath)", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - msgbox"
+    {
+      Sequence:
+        results = "";
+        WindowsScript("test_scripts\libtest - msgbox.py", Engine("Python.AXScript.2"), ShareVariable(pyversion), ShareVariable(results));
+        :"msgbox"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(60, 260, "results:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(730)));
+            Text(290, 260, "!results", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(498)));
+            Text(190, 30, "  msgbox() shenanigans", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - download url"
+    {
+      Sequence:
+        Disabled url = "ftp://ftp.ubuntu.com/ubuntu/dists/intrepid/main/binary-i386/Packages.gz";
+        Disabled url = "http://mail.python.org/pipermail/python-list/2003-October/230784.html";
+        url = "http://rss.news.yahoo.com/rss/science";
+        filename = "science_rss.xml";
+        grab_debug = "";
+        inst_content = Off;
+        :"test 2.16"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(280, 430, "click to download", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(145, 260, "!grab_debug", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(50, 180, "url:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 260, "status:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(140, 180, "!url ", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "grab_url()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - grab_url.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(url), ShareVariable(grab_debug), ShareVariable(inst_content), ShareVariable(filename));
+        :"test 2.15"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(145, 260, "!grab_debug", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(50, 180, "url:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 260, "status:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(140, 180, "!url ", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(200, 430, "download should be complete, and stored in the %TEMP% folder.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "grab_url()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - xml/rss parse"
+    {
+      Sequence:
+        filename = "science_rss.xml";
+        roottag = "channel";
+        rss_title = "";
+        rss_lang = "";
+        rss_item_titles[0] = "";
+        :"test 2.4"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to parse", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(190, 200, "!roottag", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(50, 150, "filename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 200, "roottag:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!filename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "DataChain()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - rss parse.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(filename), ShareVariable(roottag), ShareVariable(rss_title), ShareVariable(rss_lang), ShareVariable(rss_item_titles));
+        :"test 2.14"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(200, 150, "!rss_title", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(60, 190, "language:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(60, 150, "title:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(80, 270, "· !(rss_item_titles[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 300, "· !(rss_item_titles[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 330, "· !(rss_item_titles[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 360, "· !(rss_item_titles[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 390, "· !(rss_item_titles[4])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 420, "· !(rss_item_titles[5])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 450, "· !(rss_item_titles[6])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 480, "· !(rss_item_titles[7])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 510, "· !(rss_item_titles[8])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 540, "· !(rss_item_titles[9])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 570, "· !(rss_item_titles[10])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(60, 230, "items:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 190, "!rss_lang", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "DataChain()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - auto xml/rss parse"
+    {
+      Sequence:
+        filename = "science_rss.xml";
+        roottag = "channel";
+        xml_title = "";
+        xml_language = "";
+        xml_item_title[0] = "";
+        :"test 2.24"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to parse", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(190, 200, "!roottag", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(50, 150, "filename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 200, "roottag:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!filename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_xml()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - auto_xml.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(filename), ShareVariable(xml_title), ShareVariable(xml_item_title), ShareVariable(roottag), ShareVariable(xml_language));
+        :"test 2.25"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(200, 150, "!xml_title", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(637)));
+            Text(60, 190, "language:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(200, 190, "!xml_language", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(60, 150, "title:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(80, 270, "· !(xml_item_title[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 300, "· !(xml_item_title[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 330, "· !(xml_item_title[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 360, "· !(xml_item_title[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 390, "· !(xml_item_title[4])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 420, "· !(xml_item_title[5])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 450, "· !(xml_item_title[6])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 480, "· !(xml_item_title[7])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 510, "· !(xml_item_title[8])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 540, "· !(xml_item_title[9])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 570, "· !(xml_item_title[10])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(60, 230, "items:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_xml()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - auto csv parse"
+    {
+      Sequence:
+        filename = "test_scripts/schedule.csv";
+        csv_start_date[0] = "";
+        csv_start_time[0] = "";
+        csv_end_time[0] = "";
+        csv_event_name[0] = "";
+        csv_group_name[0] = "";
+        csv_location_name[0] = "";
+        :"test 2.26"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to parse", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "filename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!filename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_csv()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - auto_csv.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(filename), ShareVariable(roottag), ShareVariable(csv_start_date), ShareVariable(csv_start_time), ShareVariable(csv_end_time), ShareVariable(csv_event_name), ShareVariable(csv_group_name), ShareVariable(csv_location_name));
+        :"test 2.27"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(80, 180, "· !(csv_start_date[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 210, "· !(csv_start_date[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 240, "· !(csv_start_date[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 270, "· !(csv_start_date[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 300, "· !(csv_start_date[4])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 330, "· !(csv_start_date[5])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 360, "· !(csv_start_date[6])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 390, "· !(csv_start_date[7])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 420, "· !(csv_start_date[8])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 450, "· !(csv_start_date[9])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 480, "· !(csv_start_date[10])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 180, "!(csv_start_time[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 210, "!(csv_start_time[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 240, "!(csv_start_time[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 270, "!(csv_start_time[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 300, "!(csv_start_time[4])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 330, "!(csv_start_time[5])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 360, "!(csv_start_time[6])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 390, "!(csv_start_time[7])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 420, "!(csv_start_time[8])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 450, "!(csv_start_time[9])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 480, "!(csv_start_time[10])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 180, "!(csv_event_name[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 210, "!(csv_event_name[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 240, "!(csv_event_name[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 270, "!(csv_event_name[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 300, "!(csv_event_name[4])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 330, "!(csv_event_name[5])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 360, "!(csv_event_name[6])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 390, "!(csv_event_name[7])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 420, "!(csv_event_name[8])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 450, "!(csv_event_name[9])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 480, "!(csv_event_name[10])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(60, 110, "records:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(100, 145, "Start Date", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(300, 145, "Start Time", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(510, 145, "Event Name", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_csv()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - auto sql parse"
+    {
+      Sequence:
+        sql_query = "select * from table_page";
+        sql_constr = "";
+        :"test 2.28"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to parse", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "Conn Str:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!sql_constr", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 310, "Query:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 310, "!sql_query", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_sql()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - auto_sql.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(sql_query), ShareVariable(sql_item), ShareVariable(sql_price), ShareVariable(sql_cost), ShareVariable(sql_constr));
+        :"test 2.29"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(60, 110, "records:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(100, 145, "Item", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(300, 145, "Cost", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(510, 145, "Price", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 20), Wrap(On, Width(483)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "auto_sql()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(80, 180, "· !(sql_item[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 210, "· !(sql_item[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 240, "· !(sql_item[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(80, 270, "· !(sql_item[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 180, "!(sql_cost[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 210, "!(sql_cost[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 240, "!(sql_cost[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(300, 270, "!(sql_cost[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 180, "!(sql_price[0])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 210, "!(sql_price[1])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 240, "!(sql_price[2])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Text(510, 270, "!(sql_price[3])", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 20), Wrap(On, Width(705)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - unpack"
+    {
+      Sequence:
+        filename = "test_scripts/scalalib.tar.bz2";
+        unpack_debug = "";
+        :"test 2.32"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(202, 430, "click to unpack", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Justify(Center, Top), Wrap(On, Width(483)));
+            Text(50, 150, "filename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!filename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "unpack()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - unpack.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(filename), ShareVariable(unpack_debug));
+        :"test 2.33"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(50, 150, "filename:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(483)));
+            Text(190, 150, "!filename", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Consolas (Western [])", 30), Wrap(On, Width(631)));
+            Text(50, 190, "status:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(750)));
+            Text(270, 30, "unpack()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 190, "!unpack_debug", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - Restart Playback"
+    {
+      Sequence:
+        {
+        }
+        :"test 2.6"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "Proceed to next page by clicking with mouse.    >>>>", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(706)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 30, "  restart_play()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - restart play.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(results));
+        :"test 2.8"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "Did we make it here?  Hopefully not, we should be back at the title page.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(706)));
+            Text(190, 30, "  restart_play()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - sleep"
+    {
+      Sequence:
+        sleep_duration = 5000;
+        :"test 2.12"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 320, "It should take !(sleep_duration/1000) seconds to arrive.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(720)));
+            Text(50, 230, "Proceed to next page by clicking with mouse.    >>>>", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(706)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(190, 30, "  sleep()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        Display(Backdrop(Pen(1)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa, $777777, $bbbbbb, $dddddd)));
+        WindowsScript("test_scripts\libtest - sleep.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(pyversion), ShareVariable(results), ShareVariable(sleep_duration));
+        :"test 2.13"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 230, "It should have taken !(sleep_duration/1000) seconds to arrive here.", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 30), Wrap(On, Width(706)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(270, 30, "sleep()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - power screen"
+    {
+      Sequence:
+        screen_save = On;
+        :"test 2.20"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(299, 400, "click to enable power save, back in 3", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(564)));
+            Text(270, 30, "suspend_screen()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        WindowsScript("test_scripts\libtest - power save.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(screen_save));
+        :"wait 3"
+        HardDuration(2000);
+        screen_save = Off;
+        WindowsScript("test_scripts\libtest - power save.py", Wait(On), Engine("Python.AXScript.2"), ShareVariable(screen_save));
+        :"test 2.21"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(299, 400, "back", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(750)));
+            Text(270, 30, "suspend_screen()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+    :"test - quit player"
+    {
+      Sequence:
+        {
+        }
+        :"test 2.18"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(299, 400, "click to quit", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(750)));
+            Text(270, 30, "quit_player()", Face(On, Pen(2)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        :"test 2.19"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(299, 400, "quitting in 5 ...", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(750)));
+            Text(270, 30, "quit_player()", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            HardDuration(5000);
+        }
+        WindowsScript("test_scripts\libtest - quit player.py", Wait(On), Engine("Python.AXScript.2"));
+        :"test 2.17"
+        {
+          Group:
+            Display(Backdrop(Pen(21)), Margin(10, 10, 0, 0), Tabs(Explicit(80, 160, 240, 320, 400, 480, 560)), UserPalette(RGBPen(1, $0, $ffffff, $999999, $555555, $712068, $df449c, $dc110e, $662200, $ff5a00, $ff9c00, $ffee00, $8800, $dd00, $cccc, $66ff, $aa), RGBPen(20, $aa), RGBPen(17, $777777, $bbbbbb, $dddddd), RGBPen(21, $40)));
+            Text(50, 30, "Test !t:", Face(On, Pen(11)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Text(299, 400, "We shouldn’t be here!!!", Face(On, Pen(11)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), Align(Center, None), AntiAlias(On), Under(Off, Thickness(3), Pen(11)), Font("Bitstream Vera Sans (Western [])", 50), Justify(Center, Top), Wrap(On, Width(750)));
+            Text(270, 30, "quit_player()", Face(On, Pen(2)), Backdrop(Off, Pen(3)), Focus(Off, Pen(11)), Outline(Off, Pen(1)), Shadow(Off, Pen(1)), Bevel(Off, Base(Pen(3)), Left(Pen(18)), Right(Pen(17)), Top(Pen(19)), Bottom(Pen(4))), AntiAlias(On), Under(Off, Thickness(3), Pen(2)), Font("Bitstream Vera Sans (Western [])", 50), Wrap(On, Width(750)));
+            Wait();
+        }
+        t = t + 1;
+    }
+}

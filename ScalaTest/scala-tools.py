@@ -54,7 +54,7 @@ def main():
         print 'Deleted old playlist ID:', playlist_to_delete.id
 
     #upload media
-    file_id = content_manager.upload_file('image.png', 'CADIENLOBBY')
+    file_id = content_manager.upload_file('test_image.png', 'CADIENLOBBY')
     print 'File ID:', file_id
      
     #create playlist

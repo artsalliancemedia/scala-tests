@@ -1,0 +1,1 @@
+import sys, scwstry:    baseurl = sys.argv[1]    authstr = sys.argv[2]    print scws.ConManager(baseurl, authstr).cmversioninfo.getVersionNumber()[0]    sys.exit(0)except Exception, e:    print e    sys.exit(1)
