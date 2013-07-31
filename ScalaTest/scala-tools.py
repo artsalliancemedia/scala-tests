@@ -26,6 +26,8 @@ def print_messages():
         print 'Message list ...'
         for message in messages:
             print '  *', message.name
+    else:
+        print 'No messages found'
     print
     
 def get_player():
@@ -149,12 +151,12 @@ def main():
             
     # Create a Content Manager object, then use
     global content_manager
-    content_manager = scws.ConManager(baseurl, authstr, api_vers=u'v1.2')    
+    content_manager = scws.ConManager(baseurl, authstr, api_vers=config[u"api"])    
     
     player_id = get_player()
     
     #upload media
-    file_id = content_manager.upload_file(u'test_image.png', u'CADIENLOBBY')
+    file_id = content_manager.upload_file(u'test_image.png', config[u"network"])
     print u'File ID:', file_id
     
     frameset_id = create_frameset_if_not_exists(u'Tobias Frameset 1')
