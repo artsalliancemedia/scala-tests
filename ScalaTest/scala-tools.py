@@ -5,11 +5,19 @@ Created on 26 Jul 2013
 '''
 
 import webservices.scws as scws
+import json
+import os
 
 def main():
-    baseurl = 'http://aam-scalaplayer-test:8080/ContentManager/'
-    authstr = 'CMWeb:liggunna'
+    #read config file
+    try:
+        config = json.load(open(os.path.join(os.path.dirname(__file__), u'settings.json'), 'r'))
+    except IOError:
+        raise IOError('The settings.json file does not exist')
         
+    baseurl = config[u"baseurl"]
+    authstr = config[u"authstring"]
+            
     # Create a Content Manager object, then use
     content_manager = scws.ConManager(baseurl, authstr, api_vers='v1.2')
     players = content_manager.PlayerRS.list()
