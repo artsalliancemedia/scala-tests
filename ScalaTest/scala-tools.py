@@ -16,6 +16,7 @@ def main():
     for player in players:
         print 'Player:', player.name
     
+#     #list current playlists
 #     playlists = content_manager.PlaylistRS.list()
 #     if playlists:
 #         print 'Playlist list ...'
@@ -25,6 +26,7 @@ def main():
 #         print 'No playlists found.'
 #     print
 #      
+#     #list all messages
 #     messages = content_manager.MessageRS.list()
 #     if messages:
 #         print 'Message list ...'
@@ -63,22 +65,24 @@ def main():
     print 'PlaylistItem ID:', uploaded_pl_item[0].id
     
     #create schedule
+    #first get channel
     our_channel_criteria = scws.TObj(column='name', restriction='EQUALS', value='3x1 1600x900')
     our_channel = content_manager.ChannelRS.list(searchCriteria = our_channel_criteria)
     print 'Channel ID:', our_channel[0].id
     print 'Channel Name:', our_channel[0].name
     
+    #get all frames from channel
     frames = content_manager.ChannelRS.getFrames(channelId=our_channel[0].id)
     print 'Frame ID:', frames[0].id
     print 'Frame name:', frames[0].name
     
+    #remove old timeslots for frame
     timeslots = content_manager.ChannelRS.getTimeslots( {'channelId':our_channel[0].id}, frameId=frames[0].id)
     for timeslot in timeslots:
         content_manager.ChannelRS.deleteTimeslot(timeslotId=timeslot.id)
         print 'Deleted old new_timeslot ID:', timeslot.id
-        
-    #raise SystemExit
     
+    #create new timeslot data
     new_timeslot = scws.TObj()
     new_timeslot.channelId = our_channel[0].id
     new_timeslot.frameId = frames[0].id
@@ -93,10 +97,12 @@ def main():
     new_timeslot.color = '#FF0000'
     new_timeslot.locked = False
     
+    #upload timeslot
     uploaded_timeslot = content_manager.ChannelRS.createTimeslot(timeslotParam=new_timeslot)
     print 'Schedule ID:', uploaded_timeslot[0].id
     print 'Schedule Name:', uploaded_timeslot[0].name
     
+    #update display
     displays = content_manager.PlayerRS.getPlayerDisplays(playerId=players[0].id)
     print 'Display ID:', displays[0].id
     print 'Display Name:', displays[0].name
@@ -109,9 +115,10 @@ def main():
     
     content_manager.PlayerRS.updatePlayerDisplay(playerDisplay=updated_display)
     
+    #generate plan so player can sync
     distribution_server_tasks = content_manager.PlanGeneratorRS.generatePlans(playerIds=[players[0].id])
-    for server in distribution_server_tasks:
-        print content_manager.PlanGeneratorRS.getPlanStatus(uuid=server.uuid)
+    #for server in distribution_server_tasks:
+    #    print content_manager.PlanGeneratorRS.getPlanStatus(uuid=server.uuid)
         
 if __name__ == '__main__':
     main()
