@@ -28,19 +28,38 @@ class ScalaMonitor:
 
 
     def get_stored_content(self):
+
+        output = {}
+
         displays = self.content_manager.PlayerRS.getPlayerDisplays(playerId=self.player.id)
 
-        if not displays: raise ValueError('No displays found for player ' + self.player.name)
+        if not displays: raise ValueError(u'No displays found for player ' + self.player.name)
 
+        #should only ever be one - but better safe than sorry
         for display in displays:
-            print display
             channels = self.content_manager.ChannelRS.get(channelId=display.channelId)
-            print channels
+            if not channels: raise ValueError(u'No channels found for display ' + display.name)
 
-        # channel_filter.id =
-        # channels = self.content_manager.ChannelRS.list(searchCriteria=channel_filter)
-        # meta = self.content_manager.PlayerRS.getMetaValues(player.id)
-        # print meta
+            for channel in channels:
+                frameset = self.content_manager.ChannelRS.getFrameset(channelId=channel.id)
+
+                if not frameset: raise ValueError('No frameset found for display ' + display.name)
+                frameset = frameset[0]
+
+                output[u'frameset'] = {u'id' : frameset.id, u'name' : frameset.name}
+
+                frames = self.content_manager.ChannelRS.getFrames(channelId=channel.id)
+
+                frame_info = []
+                for frame in frames:
+                    f = {u'name' : frame.name,
+                         u'dimensions' : frame.width + u'x' + frame.height}
+                    frame_info.append(f)
+
+                output[u'frames'] = frame_info
+
+        return output
+
 
 
 def main():
@@ -55,7 +74,7 @@ def main():
     print players
     scala.set_player(players[u'Ski Kino 01'])
 
-    scala.get_stored_content()
+    print scala.get_stored_content()
 
 if __name__ == '__main__':
     main();
