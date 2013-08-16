@@ -1,6 +1,6 @@
 {
-	"baseurl": "http://aam-scalaplayer-test:8080/ContentManager/",
-	"authstring": "CMWeb:liggunna",
-	"network": "CADIENLOBBY",
+	"baseurl": "http://scala-server:8080/ContentManager/",
+	"authstring": "username:password",
+	"network": "NETWORKNAME",
 	"api": "v1.2"
 }
