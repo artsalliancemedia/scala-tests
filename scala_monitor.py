@@ -27,9 +27,16 @@ class ScalaMonitor:
         print u'Player set to ' + self.player.name
 
 
-    def get_stored_content(self):
+    def get_player_info(self):
+        """Returns
 
-        output = {}
+        {'frame_info : <see get_frame_info()>,
+        'playlists' : [<see get_playlists()>],
+        'media_on_disk':
+        'name' : 'scala_box'
+        }
+        """
+        output = {u'name' : self.player.name, u'id' : self.player.id}
 
         displays = self.content_manager.PlayerRS.getPlayerDisplays(playerId=self.player.id)
 
@@ -41,26 +48,51 @@ class ScalaMonitor:
             if not channels: raise ValueError(u'No channels found for display ' + display.name)
 
             for channel in channels:
-                frameset = self.content_manager.ChannelRS.getFrameset(channelId=channel.id)
+                output[u'frame_info'] = self.get_frame_info(channel)
+                playlists = {}
+                for frame in self.content_manager.ChannelRS.getFrames(channelId=channel.id):
+                    print '------'
+                    pls = self.get_playlists(channel.id, frame.id)
+                    print pls
+                    if(pls):
+                        playlists[frame.name] = pls
 
-                if not frameset: raise ValueError('No frameset found for display ' + display.name)
-                frameset = frameset[0]
-
-                output[u'frameset'] = {u'id' : frameset.id, u'name' : frameset.name}
-
-                frames = self.content_manager.ChannelRS.getFrames(channelId=channel.id)
-
-                frame_info = []
-                for frame in frames:
-                    f = {u'name' : frame.name,
-                         u'dimensions' : frame.width + u'x' + frame.height}
-                    frame_info.append(f)
-
-                output[u'frames'] = frame_info
+                print 'w'*10
+                output[u'playlists'] = playlists
 
         return output
 
+    def get_frame_info(self, channel):
+        """Returns frame info for a channel. Returns a dictionary that looks like the following:
+        {'frames': [
+            { 'name' : 'screen 1', 'dimensions' : '1920x1080'}
+            ...
+            ],
+        'id':'1',
+        'name':'My Frameset'
+        }
+        """
+        framesets = self.content_manager.ChannelRS.getFrameset(channelId=channel.id)
 
+        if not framesets: raise ValueError('No frameset found for channel ' + channel.name)
+
+        frameset = {u'id' : framesets[0].id, u'name' : framesets[0].name}
+        frames = self.content_manager.ChannelRS.getFrames(channelId=channel.id)
+
+        frame_info = [ {u'name' : frame.name, u'dimensions' : frame.width + u'x' + frame.height}
+                     for frame in frames if frame.audioTrack != 'true']
+
+        frameset['frames'] = frame_info
+        return frameset
+
+    def get_playlists(self, channelId, frameId):
+        #don't ask why channelId needs to be contained within a map - It just does
+        timeslots = self.content_manager.ChannelRS.getTimeslots({u'channelId':channelId},frameId=frameId)
+        for t in timeslots:
+            if t.playlistId != None:
+                pass
+
+        return [timeslot.playlistId for timeslot in timeslots  if timeslot.playlistId != None]
 
 def main():
     #read config file
@@ -71,10 +103,9 @@ def main():
 
     scala = ScalaMonitor(config[u"baseurl"], config[u"authstring"], config[u"api"])
     players = scala.get_players()
-    print players
     scala.set_player(players[u'Ski Kino 01'])
 
-    print scala.get_stored_content()
+    print scala.get_player_info()
 
 if __name__ == '__main__':
     main();
