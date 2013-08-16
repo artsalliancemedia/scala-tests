@@ -2,6 +2,7 @@ import webservices.scws as scws
 import json
 import os
 
+
 class ScalaMonitor:
     def __init__(self, baseurl, authstr, api):
         self.content_manager = scws.ConManager(baseurl, authstr, api_vers=api)
@@ -27,11 +28,19 @@ class ScalaMonitor:
 
 
     def get_stored_content(self):
-        channel_filter = scws.TObj()
-        channel_filter.id
-        channels = self.content_manager.ChannelRS.list(searchCriteria=channel_filter)
-        meta = self.content_manager.PlayerRS.getMetaValues(player.id)
-        print meta
+        displays = self.content_manager.PlayerRS.getPlayerDisplays(playerId=self.player.id)
+
+        if not displays: raise ValueError('No displays found for player ' + self.player.name)
+
+        for display in displays:
+            print display
+            channels = self.content_manager.ChannelRS.get(channelId=display.channelId)
+            print channels
+
+        # channel_filter.id =
+        # channels = self.content_manager.ChannelRS.list(searchCriteria=channel_filter)
+        # meta = self.content_manager.PlayerRS.getMetaValues(player.id)
+        # print meta
 
 
 def main():
