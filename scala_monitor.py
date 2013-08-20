@@ -49,16 +49,12 @@ class ScalaMonitor:
 
             for channel in channels:
                 output[u'frame_info'] = self.get_frame_info(channel)
-                playlists = {}
+                playlist_info = {}
                 for frame in self.content_manager.ChannelRS.getFrames(channelId=channel.id):
-                    print '------'
-                    pls = self.get_playlists(channel.id, frame.id)
-                    print pls
-                    if(pls):
-                        playlists[frame.name] = pls
+                    #get playlists associated with this frame and add them to dict
+                    playlist_info.update(self.get_playlist_info(channel.id, frame.id))
 
-                print 'w'*10
-                output[u'playlists'] = playlists
+                output[u'playlists'] = playlist_info
 
         return output
 
@@ -85,14 +81,65 @@ class ScalaMonitor:
         frameset['frames'] = frame_info
         return frameset
 
-    def get_playlists(self, channelId, frameId):
+
+    def get_media_ids(self, playlistId):
+        """Returns a list of all media ids of media contained within a playlist and its sub-playlists
+        """
+        playlist_items = self.content_manager.PlaylistRS.getPlaylistItems(playlistId=playlistId)
+        if not playlist_items: raise ValueError(u'No playlist found with id ' + playlistId)
+
+        out = []
+        for item in playlist_items:
+            if item.playlistItemType == u'SUB_PLAYLIST':
+                #playlist could be full of sub-playlists rather than media items, so recurse through
+                out.extend(self.get_media_ids(item.playlistId))
+            elif item.playlistItemType == u'MEDIA_ITEM' or item.playlistItemType == u'MESSAGE':
+                out.append(item.mediaId)
+            else:
+                raise ValueError(u'Playlist item ' + item.id + u' has unknown playlist type ' + item.playlistItemType)
+
+        return out
+
+    def get_media_info(self, media):
+        """Returns an info dict containing information on a provided MediaTO object
+        {'id' : '123',
+         'path': '/My Folder/Data',
+         'type': 'IMAGE' (see https://developer.scala.com/dev/index.php/MediaTypeEnum)
+        }
+        """
+        return {u'id' : media.id,
+                u'path': media.path,
+                u'type': media.mediaType
+        }
+
+    def get_playlist_info(self, channelId, frameId):
+        """ Returns an info dict containing information on all playlists contained within this frame
+        {'playlist 1' : {
+                'media name' : {<see get_media_info()>}
+            }, ...
+        }
+        """
+        output = {}
+
         #don't ask why channelId needs to be contained within a map - It just does
-        timeslots = self.content_manager.ChannelRS.getTimeslots({u'channelId':channelId},frameId=frameId)
+        timeslots = self.content_manager.ChannelRS.getTimeslots({u'channelId':channelId}, frameId=frameId)
         for t in timeslots:
             if t.playlistId != None:
-                pass
 
-        return [timeslot.playlistId for timeslot in timeslots  if timeslot.playlistId != None]
+                media_items = self.get_media_ids(t.playlistId)
+                #media_items is a list of media id
+                items = {}
+                for id in media_items:
+                    media = self.content_manager.MediaRS.get(mediaId=id)
+                    if not media: raise ValueError(u'Media not found ' + mediaId)
+
+                    items[media[0].name] = self.get_media_info(media[0])
+
+                playlists = self.content_manager.PlaylistRS.get(playlistId=t.playlistId)
+                if not playlists: raise ValueError(u'No playlist found with id ' + playlistId)
+                output[playlists[0].name] = items
+
+        return output
 
 def main():
     #read config file
@@ -105,7 +152,8 @@ def main():
     players = scala.get_players()
     scala.set_player(players[u'Ski Kino 01'])
 
-    print scala.get_player_info()
+    s = scala.get_player_info()
+    print json.dumps(s)
 
 if __name__ == '__main__':
     main();
