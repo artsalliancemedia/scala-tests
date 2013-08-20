@@ -2,6 +2,16 @@ import webservices.scws as scws
 import json
 import os
 
+def human_filesize(filesize):
+    """Takes a number of bytes and converts it to a human readable value.
+    Eg: 157456 -> 153.7 KB
+    """
+    for suffix in ['bytes','KB','MB','GB']:
+        if filesize < 1024.0 and filesize > -1024.0:
+            return "%3.1f%s" % (filesize, suffix)
+        filesize /= 1024.0
+    return "%3.1f%s" % (filesize, 'TB')
+
 
 class ScalaMonitor:
     def __init__(self, baseurl, authstr, api):
@@ -105,12 +115,20 @@ class ScalaMonitor:
         {'id' : '123',
          'path': '/My Folder/Data',
          'type': 'IMAGE' (see https://developer.scala.com/dev/index.php/MediaTypeEnum)
+         'filesize': '1234MB'
         }
+
+        Note, filesize is not guaranteed to be present - it's not contained in message objects
         """
-        return {u'id' : media.id,
+
+        out = {u'id' : media.id,
                 u'path': media.path,
                 u'type': media.mediaType
         }
+        if media.length:
+            out[u'filesize'] = human_filesize(int(media.length))
+
+        return out
 
     def get_playlist_info(self, channelId, frameId):
         """ Returns an info dict containing information on all playlists contained within this frame
