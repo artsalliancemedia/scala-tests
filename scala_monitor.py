@@ -71,12 +71,20 @@ class ScalaMonitor:
     def get_frame_info(self, channel):
         """Returns frame info for a channel. Returns a dictionary that looks like the following:
         {'frames': [
-            { 'name' : 'screen 1', 'dimensions' : '1920x1080'}
+            { 'name' : 'screen 1',
+              'dimensions' : { 'width' : 1920, 'height': 1080},
+              'top_left' : { 'x' : 0, 'y': 0},
+              'order' : 0
+            },
             ...
             ],
         'id':'1',
         'name':'My Frameset'
         }
+
+        where order is a positive normal number based on where it is in the z-axis. 0 represents the frame at
+        the back, with each entry up to n heading towards the front.
+
         """
         framesets = self.content_manager.ChannelRS.getFrameset(channelId=channel.id)
 
@@ -85,8 +93,14 @@ class ScalaMonitor:
         frameset = {u'id' : framesets[0].id, u'name' : framesets[0].name}
         frames = self.content_manager.ChannelRS.getFrames(channelId=channel.id)
 
-        frame_info = [ {u'name' : frame.name, u'dimensions' : frame.width + u'x' + frame.height}
-                     for frame in frames if frame.audioTrack != 'true']
+
+        #frame.audioTrack is 'true' if audio, no point logging this as it's automatically included anyway
+        frame_info = [ {u'name' : frame.name,
+                        u'dimensions' : { u'width': int(frame.width), u'height' : int(frame.height)},
+                        u'top_left' : {u'x' : int(frame.x), u'y' : int(frame.y)},
+                        u'order' : int(frame.sortOrder)
+                       }
+                       for frame in frames if frame.audioTrack != 'true']
 
         frameset['frames'] = frame_info
         return frameset
