@@ -78,12 +78,10 @@ class ScalaMonitor:
                         #if the pl is not present, then add data. Playlist data will always be the same regardless of what
                         #channel/frame id we get it with, the only thing we need to be aware of changing is the frame id
                         if pl_name not in playlist_info:
-                            print pl_name, 'adding', frame.id
                             playlist_info[pl_name] = new_playlists[pl_name]
                             playlist_info[pl_name][u'frames'] = [frame.id]
                         #frames must be here, as playlist_info[pl_name] will only exist if we previously did the above if statement
                         elif frame.id not in playlist_info[pl_name][u'frames']:
-                            print pl_name, 'appending', frame.id
                             playlist_info[pl_name][u'frames'].append(frame.id)
 
                 output[u'playlists'] = playlist_info
