@@ -43,7 +43,7 @@ manner.  Example command-line upload to CM included.
 
 #### Initial steps
 
-Clone this repo, or by other means copy the scws module.
+The easiest way to start is to grab the webservices subfolder of this repository. scws is not available on `pip` or `easy_install`, so just leave it as a subfolder of your directory.
 
     from webservices.scws import scws
 
