@@ -13,21 +13,21 @@ Just clone the repo, all requirements are included (see below)
 
 ### Next Steps
 
-Take a copy of `settings-template.json`, name it `settings.json` and fill out the fields.
+Take a copy of *settings-template.json*, name it *settings.json* and fill out the fields.
 
-By default, the application will use this `settings.json` file.
+By default, the application will use this *settings.json* file.
 
 To start the scala test app run:
-`python scala_tools.py`
+*python scala_tools.py*
 
 To start the monitoring app run:
-`python scala_monitor.py`
+*python scala_monitor.py*
 
 ### Included libraries
 
 This includes the following libraries from Scala. They are not provided via pip that is why they are directly in the repo.
 
-## Scalalib
+### Scalalib
 
 A set of modules with tools and utilities for common needs at playback
 time, communication, synchronization, publishing, Player provisioning, etc.
@@ -39,7 +39,7 @@ Webservice modules for communicating with Content Manager 5 in a simple
 manner.  Example command-line upload to CM included.
 
 
-## Creating your own code for interacting with python
+### Creating your own python code for interacting with Scala
 
 #### Initial steps
 
@@ -54,7 +54,7 @@ Clone this repo, or by other means copy the scws module.
 
 #### Simple use cases
 
-Now the Content Manager is connected, you can usue the `content_manager` object to access a variety of functions. For example, to list the names of all players:
+Now the Content Manager is connected, you can usue the *content_manager* object to access a variety of functions. For example, to list the names of all players:
 
     players = content_manager.PlayerRS.list()
     for player in players:
@@ -74,9 +74,14 @@ For example, to search for all channels with names containing "test":
 
 
 #### MetaValues
-Players, Messages and Media items can contain meta-values, which are accessed differently to the main objects, using `MediaRS.getMetaValues(mediaId=id)` for example.
+Players, Messages and Media items can contain meta-values, which are accessed differently to the main objects, using *MediaRS.getMetaValues(mediaId=id)* for example.
 
 ### Layout
-The basic structure of a Scala player is as follows. The Content Manager will have links to a variety of `Player`s. A `Player` contains a number of `Display`s, which each contains a single `Channel`. A `Channel` has a `Schedule` and a `Frameset`. The `Frameset` contains multiple `Frame`s, and dictates how the frames are laid out, any bezel sizes, the ordering of frames from front to back, and so on. The `Schedule` dictates at what times a `Playlist` is shown, and on which `Frame`s. A `Playlist` can contain `Media`, `Audio`, or `Data`, and specifies ordering, transitions, lengths images are displayed for, and so on and so forth.
+The basic structure of a Scala player is as follows. The Content Manager will have links to a variety of *Player*s. A *Player* contains a number of *Display*s, which each contains a single *Channel*. A *Channel* has a list of *Timeslot*s and a *Frameset*. The *Frameset* contains multiple *Frame*s, and dictates how the frames are laid out, any bezel sizes, the ordering of frames from front to back, and so on. The *Schedule* dictates at what times a *Playlist* is shown, and on which *Frame*s. A *Playlist* can contain *Media*, *Audio*, or *Data*, and specifies ordering, transitions, lengths images are displayed for, and so on and so forth.
+
+                                /-> Timeslot -> Playlist -> Media
+    Player -> Display -> Channel
+                                \-> Frameset -> Frame
+
 
 
