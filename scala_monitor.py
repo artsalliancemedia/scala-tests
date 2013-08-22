@@ -18,13 +18,18 @@ class ScalaMonitor:
         self.content_manager = scws.ConManager(baseurl, authstr, api_vers=api)
 
     def get_players(self):
+        """Returns a dictionary of all players, of format { 'name' : 'id' }. Note that id is a string,
+        this is by design, all other functions requiring ID parameters in ScalaMonitor (and indeed, the scala API)
+        accept strings.
+        """
         return dict((player.name, player.id)
                     for player in self.content_manager.PlayerRS.list())
 
     def set_player(self, player_id):
         """ Sets the player to be monitored by ScalaMonitor.
 
-        Searches through all players, will find the first player that matches the provided name.
+        Searches through all players, will find the first player that matches the provided name,
+        and set the ScalaMonitor to that player.
         """
         players = self.content_manager.PlayerRS.list()
         try:
@@ -38,7 +43,7 @@ class ScalaMonitor:
 
 
     def get_player_info(self):
-        """Returns
+        """Returns a dictionary containing
 
         {'frame_info : <see get_frame_info()>,
         'playlists' : [<see get_playlists()>],
@@ -62,7 +67,24 @@ class ScalaMonitor:
                 playlist_info = {}
                 for frame in self.content_manager.ChannelRS.getFrames(channelId=channel.id):
                     #get playlists associated with this frame and add them to dict
-                    playlist_info.update(self.get_playlist_info(channel.id, frame.id))
+
+                    #we need to do this carefully. we want to make sure the frames list is extended.
+                    #Don't care what happens to file infos as these will be the same
+
+                    new_playlists = self.get_playlist_info(channel.id, frame.id)
+
+                    #can't just use playlist_info.update(new_playlists) because that will overwrite/destroy the frames list. do it manually.
+                    for pl_name in new_playlists:
+                        #if the pl is not present, then add data. Playlist data will always be the same regardless of what
+                        #channel/frame id we get it with, the only thing we need to be aware of changing is the frame id
+                        if pl_name not in playlist_info:
+                            print pl_name, 'adding', frame.id
+                            playlist_info[pl_name] = new_playlists[pl_name]
+                            playlist_info[pl_name][u'frames'] = [frame.id]
+                        #frames must be here, as playlist_info[pl_name] will only exist if we previously did the above if statement
+                        elif frame.id not in playlist_info[pl_name][u'frames']:
+                            print pl_name, 'appending', frame.id
+                            playlist_info[pl_name][u'frames'].append(frame.id)
 
                 output[u'playlists'] = playlist_info
 
@@ -147,9 +169,15 @@ class ScalaMonitor:
     def get_playlist_info(self, channelId, frameId):
         """ Returns an info dict containing information on all playlists contained within this frame
         {'playlist 1' : {
-                'media name' : {<see get_media_info()>}
+                'items' : {
+                    'file 1' : {<see get_media_info()>}
+                    'file 2' : {<see get_media_info()>}
+                }
             }, ...
         }
+
+        the reason for the nested items dict is that the playlist entry may later contain meta-information
+        such as frame information, scheduling information, etc
         """
         output = {}
 
@@ -160,6 +188,9 @@ class ScalaMonitor:
 
                 media_items = self.get_media_ids(t.playlistId)
                 #media_items is a list of media id
+
+                frames = []
+
                 items = {}
                 for id in media_items:
                     media = self.content_manager.MediaRS.get(mediaId=id)
@@ -169,7 +200,8 @@ class ScalaMonitor:
 
                 playlists = self.content_manager.PlaylistRS.get(playlistId=t.playlistId)
                 if not playlists: raise ValueError(u'No playlist found with id ' + playlistId)
-                output[playlists[0].name] = items
+                output[playlists[0].name] = {}
+                output[playlists[0].name][u'items'] = items
 
         return output
 
