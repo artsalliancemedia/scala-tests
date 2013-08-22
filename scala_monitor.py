@@ -45,9 +45,9 @@ class ScalaMonitor:
     def get_player_info(self):
         """Returns a dictionary containing
 
-        {'frame_info : <see get_frame_info()>,
+        {'frame_info : {<see get_frame_info()>},
         'playlists' : [<see get_playlists()>],
-        'media_on_disk':
+        'id' : '123'
         'name' : 'scala_box'
         }
         """
