@@ -72,16 +72,21 @@ For example, to search for all channels with names containing "test":
     channel_filter.value        = u'%test%'
     test_channels = content_manager.ChannelRS.list(searchCriteria=channel_filter)
 
+A quick tutorial is available [here](https://developer.scala.com/dev/index.php/WebServicesTutorial_python_mike).
 
-#### MetaValues
-Players, Messages and Media items can contain meta-values, which are accessed differently to the main objects, using *MediaRS.getMetaValues(mediaId=id)* for example.
-
-### Layout
+#### Class Layout
 The basic structure of a Scala player is as follows. The Content Manager will have links to a variety of *Player*s. A *Player* contains a number of *Display*s, which each contains a single *Channel*. A *Channel* has a list of *Timeslot*s and a *Frameset*. The *Frameset* contains multiple *Frame*s, and dictates how the frames are laid out, any bezel sizes, the ordering of frames from front to back, and so on. The *Schedule* dictates at what times a *Playlist* is shown, and on which *Frame*s. A *Playlist* can contain *Media*, *Audio*, or *Data*, and specifies ordering, transitions, lengths images are displayed for, and so on and so forth.
 
                                 /-> Timeslot -> Playlist -> Media
     Player -> Display -> Channel
                                 \-> Frameset -> Frame
 
+#### MetaValues
+Players, Messages and Media items can contain meta-values, which are accessed differently to the main objects, using *MediaRS.getMetaValues(mediaId=id)* for example.
 
 
+### Some thoughts on the Scala API
+
+The Scala API is perfectly functional, and relatively full featured. While somewhat confusing to use and not hugely "pythonic", it does do its job reasonably thoroughly and effictively. A bit of care has to be taken with a few quirks of it though. For example I could not get it to return transmission or data size from `PlanGeneratorRS.getPlanStatus()`. For some bizarre reason `ChannelRS.getTimeslots(channelId, frameId)` does not work, instead you must call `ChannelRS.getTimeslots({'channelId':channel}, frameId=frame)` instead.
+
+It does not appear possible to in any way easily directly interact with a Scala Player, instead, all interaction should be done through the Content Manager. There is a scripting language called [ScalaScript](https://developer.scala.com/dev/index.php/ScalaScript_Language) that may potentially be used to interact with the player directly.
