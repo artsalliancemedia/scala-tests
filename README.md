@@ -4,7 +4,8 @@
 Creates a new playlist in Scala consisting of an item "test_image.png", puts the playlist into a schedule and updates the player to sync the new changes.
 
 #### Scala Monitor
-Provides a class to monitor a chosen player, and report back a variety of information on that player such as files it uses and screen layouts.
+Provides a class for use in monitoring a player. It will connect to a content manager, and for a chosen player report
+back a variety of information on that player such as files it uses and screen layouts.
 
 ### Installation
 
@@ -25,13 +26,13 @@ To start the monitoring app run:
 
 ### Included libraries
 
-This includes the following libraries from Scala. They are not provided via pip that is why they are directly in the repo.
+This includes the following libraries from Scala. They are not provided via pip, which is why they are directly in the repo.
 
-### Scalalib
+#### Scalalib
 
 A set of modules with tools and utilities for common needs at playback
 time, communication, synchronization, publishing, Player provisioning, etc.
-
+It is not currently used by any of the files here, but is kept for reference.
 
 #### Scws
 
@@ -47,6 +48,12 @@ The easiest way to start is to grab the webservices subfolder of this repository
 
     from webservices.scws import scws
 
+For example
+
+    baseurl: "http://aam-scalaplayer-test:8080/ContentManager/",
+    authstring: "CMWeb:liggunna",
+    network: "CADIENLOBBY", #used for uploading
+    api: "v1.2"
     baseurl = "http://my-scala-box:8080/ContentManager/"
     authstr = "username:password"
     api = "v1.2"
