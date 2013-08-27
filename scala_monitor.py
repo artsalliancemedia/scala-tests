@@ -94,7 +94,7 @@ class ScalaMonitor:
             { 'name' : 'screen 1',
               'dimensions' : { 'width' : 1920, 'height': 1080},
               'top_left' : { 'x' : 0, 'y': 0},
-              'order' : 0
+              'z-index' : 0
             },
             ...
             ],
@@ -115,12 +115,14 @@ class ScalaMonitor:
 
 
         #frame.audioTrack is 'true' if audio, no point logging this as it's automatically included anyway
-        frame_info = [ {u'name' : frame.name,
+        frame_info = []
+        for frame in frames:
+            if frame.audioTrack != 'true':
+                frame_info.append({u'name' : frame.name,
                         u'dimensions' : { u'width': int(frame.width), u'height' : int(frame.height)},
                         u'top_left' : {u'x' : int(frame.x), u'y' : int(frame.y)},
-                        u'order' : int(frame.sortOrder)
-                       }
-                       for frame in frames if frame.audioTrack != 'true']
+                        u'z-index' : int(frame.sortOrder)
+                       })
 
         frameset['frames'] = frame_info
         return frameset
